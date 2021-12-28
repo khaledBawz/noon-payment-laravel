@@ -20,4 +20,5 @@ return [
     "order_category" => env('NOON_PAYMENT_ORDER_CATEGORY'),
     "channel" => env('NOON_PAYMENT_CHANNEL'),
     "payment_api" => env('NOON_PAYMENT_PAYMENT_API'),
+    "tokenizeCc" => env('NOON_PAYMENT_TOKENiZEE')
 ];
