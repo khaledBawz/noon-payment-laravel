@@ -42,7 +42,7 @@ class NoonPayment
 
     public function getOrderByRef($orderRef)
     {
-        return json_decode(CurlHelper::get(config("noon_payment.payment_api") . "getbyreference/" . $orderRef, $this->getHeaders()));
+        return json_decode(CurlHelper::get(config("noon_payment.payment_api") . "order/getbyreference/" . $orderRef, $this->getHeaders()));
     }
 
     private function getHeaders()
