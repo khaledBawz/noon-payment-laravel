@@ -27,9 +27,7 @@ class NoonPayment
         $paymentInfo['order']['channel'] = config("noon_payment.channel");
         $paymentInfo['order']['category'] = config("noon_payment.order_category");
         // Options for tokenize cc are (true - false)
-        if(! is_null(config('noon_payment.tokenizeCc'))){
-            $paymentInfo['configuration']['tokenizeCc'] = (!empty($paymentInfo['configuration']['tokenizeCc'])) ? $paymentInfo['configuration']['tokenizeCc'] : "true";
-        }
+        $paymentInfo['configuration']['tokenizeCc'] = (!empty($paymentInfo['configuration']['tokenizeCc'])) ? $paymentInfo['configuration']['tokenizeCc'] : "true";
         $paymentInfo['configuration']['returnUrl'] = config('noon_payment.return_url');
         // Options for payment action are (AUTHORIZE - SALE)
         $paymentInfo['configuration']['paymentAction'] = (!empty($paymentInfo['configuration']['paymentAction'])) ? $paymentInfo['configuration']['paymentAction'] : "SALE";
@@ -40,6 +38,11 @@ class NoonPayment
     public function getOrder($orderId)
     {
         return json_decode(CurlHelper::get(config("noon_payment.payment_api") . "order/" . $orderId, $this->getHeaders()));
+    }
+
+    public function getOrderByRef($orderRef)
+    {
+        return json_decode(CurlHelper::get(config("noon_payment.payment_api") . "getbyreference/" . $orderRef, $this->getHeaders()));
     }
 
     private function getHeaders()
